@@ -1,0 +1,23 @@
+require 'rake'
+require 'rake/testtask'
+require_relative 'lib/parenthesis_floors'
+
+Rake::TestTask.new do |t|
+  t.libs << "test"
+  t.test_files = FileList['test/test*.rb']
+  t.verbose = true
+end
+
+desc "run calc"
+task :floors do
+  input = File.read('lib/input.text')
+  floors = ParenthesisFloors.new
+  puts floors.calc(input)
+end
+
+desc "run goingdown"
+task :goingdown do
+  input = File.read('lib/input.text')
+  floors = ParenthesisFloors.new
+  puts floors.goingdown(input)
+end
