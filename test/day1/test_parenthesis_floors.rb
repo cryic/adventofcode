@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require 'parenthesis_floors'
+require 'day1/parenthesis_floors'
 
 class TestParenthesisFloors < Minitest::Test
   def setup

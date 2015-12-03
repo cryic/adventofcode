@@ -1,23 +1,33 @@
 require 'rake'
 require 'rake/testtask'
-require_relative 'lib/parenthesis_floors'
 
 Rake::TestTask.new do |t|
   t.libs << "test"
-  t.test_files = FileList['test/test*.rb']
+  t.test_files = FileList['test/**/test*.rb']
   t.verbose = true
 end
 
 desc "run calc"
 task :floors do
-  input = File.read('lib/input.text')
+  input = File.read('lib/day1/input.text')
   floors = ParenthesisFloors.new
   puts floors.calc(input)
 end
 
 desc "run goingdown"
 task :goingdown do
-  input = File.read('lib/input.text')
+  input = File.read('lib/day1/input.text')
   floors = ParenthesisFloors.new
   puts floors.goingdown(input)
+end
+
+desc "run day2/wrapping_paper#calc"
+task :total_paper do
+  require_relative 'lib/day2/wrapping_paper'
+  input = File.readlines('lib/day2/input.text')
+  measurements = input.compact.map do |box|
+    present = WrappingPaper.new
+    present.calc(box)
+  end
+  puts measurements.reduce(:+)
 end
