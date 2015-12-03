@@ -31,3 +31,14 @@ task :total_paper do
   end
   puts measurements.reduce(:+)
 end
+
+desc "run day2/wrapping_paper#bow"
+task :total_bow do
+  require_relative 'lib/day2/wrapping_paper'
+  input = File.readlines('lib/day2/input.text')
+  measurements = input.compact.map do |box|
+    present = WrappingPaper.new
+    present.bow(box)
+  end
+  puts measurements.reduce(:+)
+end
