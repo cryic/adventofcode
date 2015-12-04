@@ -42,3 +42,14 @@ task :total_bow do
   end
   puts measurements.reduce(:+)
 end
+
+desc "run day3"
+task :day3 do
+  require_relative 'lib/day3/houses'
+  input = File.readlines('lib/day3/input.text')
+  cleaned = input.map(&:chomp).reject(&:empty?)
+  cleaned.each do |directions|
+    path = HousesCalculator.new
+    puts path.visit(directions)
+  end
+end
