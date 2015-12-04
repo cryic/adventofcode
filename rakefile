@@ -50,6 +50,7 @@ task :day3 do
   cleaned = input.map(&:chomp).reject(&:empty?)
   cleaned.each do |directions|
     path = HousesCalculator.new
-    puts path.visit(directions)
+    puts path.count(directions)
+    puts path.robo_count(directions)
   end
 end

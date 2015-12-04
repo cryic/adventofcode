@@ -4,6 +4,29 @@ class HousesCalculator
   DECREMENT_X = '<'
   DECREMENT_Y = 'v'
 
+  def robo_count(str_movements)
+    movements = str_movements.chars
+    santa = []
+    robo = []
+    movements.each_with_index do |move, index|
+      if index.odd?
+        santa << move
+      elsif index.even?
+        robo << move
+      end
+    end
+    santa_houses = visit(santa.join)
+    robo_houses = visit(robo.join)
+    all = santa_houses + robo_houses
+    all.uniq.count
+  end
+
+  def count(str_movements)
+    visit(str_movements).uniq.count
+  end
+
+  private
+
   def visit(str_movements)
     movements = str_movements.chars
     path = Path.new(0,0)
@@ -19,9 +42,8 @@ class HousesCalculator
         path.decrement_y
       end
     end
-    path.history.uniq.count
+    path.history
   end
-
 end
 
 class Path

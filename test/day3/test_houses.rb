@@ -6,9 +6,15 @@ class TestHousesCalculator < Minitest::Test
     @grid = HousesCalculator.new
   end
 
-  def test_visit
-    assert_equal 2, @grid.visit('>')
-    assert_equal 4, @grid.visit('^>v<')
-    assert_equal 2, @grid.visit('^v^v^v^v^v')
+  def test_count
+    assert_equal 2, @grid.count('>')
+    assert_equal 4, @grid.count('^>v<')
+    assert_equal 2, @grid.count('^v^v^v^v^v')
+  end
+
+  def test_robo_count
+    assert_equal 3, @grid.robo_count('^v')
+    assert_equal 3, @grid.robo_count('^>v<')
+    assert_equal 11, @grid.robo_count('^v^v^v^v^v')
   end
 end
